@@ -1,0 +1,18 @@
+Thanks to all the bug reporters and bug fixers
+
+BUG FIXES:
+
+Version 1.0:
+	Bug: Carry error for negative numbers (SUB or CMP instructions)
+	Reported by: Ángel Luis García Fernández <algarcia@ujaen.es>
+	Fixed By: Sinu John
+
+Version 1.01:
+	Bug: In conditional jump and call instructions
+	Reported by: Ángel Luis García Fernández <algarcia@ujaen.es>
+	Fixed By: Alberto Fernández <ahilario@ujaen.es>, Sinu John, Jinsmon Kurian
+
+Version 1.02:
+	Bug: In DAD instructions
+	Reported by: Ángel Luis García Fernández <algarcia@ujaen.es>
+	Fixed By: Sinu John

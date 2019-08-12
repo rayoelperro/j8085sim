@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+
+<BODY LANG="en-US" DIR="LTR">
+<h1>Assembler Directives</h1>
+	<p>
+	Assembler Directives supported are - @NEXT, @BEGIN and @EQU. These assembler directives are not compiled to generate hexcode.
+<p>
+	<b>@NEXT </b>
+<br>
+	Syntax:<br>        @NEXT Memory_Address
+<p>
+	This assembler directive specifies where the next instruction is to be assembled in memory. The instructions after this directive are assembled at the memory location starting from the specified location.
+	This directive is used when one block of instructions have to be loaded at one location and another block of instructions have to be loaded at another location. The user has to just add the @NEXT directive before these blocks of instructions.
+	When a number of @NEXT is used and there is no @BEGIN in the program, then the location specified in the last @NEXT statement is taken as the execution start address.
+<p><p>
+	<b>@BEGIN</b>
+<br>
+	Syntax: <br>       @BEGIN Memory_Address
+<p>
+	This assembler directive is used to specify the memory location from where execution begins. This directive can be given anywhere in the program. If more than one @BEGIN is used, then only the last one is considered.
+<p><p>
+	<b>@EQU</b>
+<br>
+	Syntax:   <br>      Label: @EQU Value
+<p>
+	This assembler directive is used to declare constants. The symbol name is given as a label. The 'Value' can be either a 2-digit or a 4-digit hexadecimal number. The Symbol Name can now be used any where in the program except Assembler Directives.
+<br>	Eg:
+<br>		PORT1: @EQU 02
+<br>		OUT PORT1
+
+</BODY>
+</HTML>

@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<help>
+<instruction>
+  <opcode>mov</opcode>
+  <operand>Destination,Source</operand>
+  <short>Copy from source to destination</short>
+  <long>This instruction copies the contents of the source register
+  into the destination register; the contents of the source register are not altered. If one
+  of the operands is all memory location, its location is specified by the contents of
+	the HL registers.</long>
+</instruction>
+
+<instruction>
+  <opcode>mvi</opcode>
+  <operand>Rd/M, data</operand>
+  <short>Move immediate 8-bit</short>
+  <long>Move immediate 8-bit memory. If the operand is a memory location, its location is specified by the contents of the HL registers.</long>
+</instruction>
+
+<instruction>
+  <opcode>lda</opcode>
+  <operand>16-bit address</operand>
+  <short>Load accumulator</short>
+  <long>The contents of a memory location, specified by a 16-bit address in the operand, are copied to the accumulator. The contents of the source are not altered.</long>
+</instruction>
+
+<instruction>
+  <opcode>ldax</opcode>
+  <operand>B/D Reg. pair</operand>
+  <short>Load accumulator indirect</short>
+  <long>The contents of the designated register pair point to a memory
+	location. This instruction copies the contents of that memory
+	location into the accumulator. The contents of either the
+	register pair or the memory location are not altered</long>
+</instruction>
+
+<instruction>
+  <opcode>lxi</opcode>
+  <operand>Reg. pair, 16-bit data</operand>
+  <short>Reg. pair, 16-bit data</short>
+  <long>The instruction loads 16-bit data in the register pair
+	designated in the operand</long>
+</instruction>
+
+<instruction>
+  <opcode>lhld</opcode>
+  <operand>16-bit address</operand>
+  <short>Load H and L registers direct</short>
+  <long>The instruction copies the contents of the memory location
+	pointed out by the 16-bit address into register L and copies
+	the contents of the next memory location into register H. The
+	contents of source memory locations are not altered.</long>
+</instruction>
+
+<instruction>
+  <opcode>sta</opcode>
+  <operand>16-bit address</operand>
+  <short>Store accumulator indirect</short>
+  <long>The contents of the accumulator are copied into the memory
+	location specified by the contents of the operand (register
+	pair). The contents of the accumulator are not altered.</long>
+</instruction>
+
+<instruction>
+  <opcode>stax</opcode>
+  <operand>Reg. pair</operand>
+  <short>Store accumulator indirect</short>
+  <long>The contents of the accumulator are copied into the memory
+	location specified by the contents of the operand (register
+	pair). The contents of the accumulator are not altered.</long>
+</instruction>
+
+<instruction>
+  <opcode>shld</opcode>
+  <operand>16-bit address</operand>
+  <short>Store H and L registers direct</short>
+  <long>The contents of register L are stored into the memory location
+	specified by the 16-bit address in the operand and the contents
+	of H register are stored into the next memory location by
+	incrementing the operand. The contents of registers HL are
+	not altered. This is a 3-byte instruction, the second byte
+	specifies the low-order address and the third byte specifies the
+	high-order address.</long>
+</instruction>
+
+<instruction>
+  <opcode>xchg</opcode>
+  <operand>none</operand>
+  <short>Exchange H and L with D and E</short>
+  <long>The contents of register H are exchanged with the contents of
+	register D, and the contents of register L are exchanged with
+	the contents of register E.</long>
+</instruction>
+
+<instruction>
+  <opcode>sphl</opcode>
+  <operand>none</operand>
+  <short>Copy H and L registers to the stack pointer</short>
+  <long>The instruction loads the contents of the H and L registers into
+	the stack pointer register, the contents of the H register
+	provide the high-order address and the contents of the L
+	register provide the low-order address. The contents of the H
+	and L registers are not altered.</long>
+</instruction>
+
+<instruction>
+  <opcode>xthl</opcode>
+  <operand>none</operand>
+  <short>Exchange H and L with top of stack</short>
+  <long>The contents of the L register are exchanged with the stack
+	location pointed out by the contents of the stack pointer
+	register. The contents of the H register are exchanged with
+	the next stack location (SP+1); however, the contents of the
+	stack pointer register are not altered.</long>
+</instruction>
+
+<instruction>
+  <opcode>push</opcode>
+  <operand>Reg. pair</operand>
+  <short>Push register pair onto stack</short>
+  <long>The contents of the register pair designated in the operand are
+	copied onto the stack in the following sequence. The stack
+	pointer register is decremented and the contents of the highorder
+	register (B, D, H, A) are copied into that location. The
+	stack pointer register is decremented again and the contents of
+	the low-order register (C, E, L, flags) are copied to that
+	location</long>
+</instruction>
+
+<instruction>
+  <opcode>pop</opcode>
+  <operand>Reg. pair</operand>
+  <short>Pop off stack to register pair</short>
+  <long>The contents of the memory location pointed out by the stack
+	pointer register are copied to the low-order register (C, E, L,
+	status flags) of the operand. The stack pointer is incremented
+	by 1 and the contents of that memory location are copied to
+	the high-order register (B, D, H, A) of the operand. The stack
+	pointer register is again incremented by 1.</long>
+</instruction>
+
+<instruction>
+  <opcode>out</opcode>
+  <operand>8-bit port address</operand>
+  <short>Output data from accumulator to a port with 8-bit address</short>
+  <long>The contents of the accumulator are copied into the I/O port
+	specified by the operand.</long>
+</instruction>
+
+<instruction>
+  <opcode>in</opcode>
+  <operand>8-bit port address</operand>
+  <short>Input data to accumulator from a port with 8-bit address</short>
+  <long>The contents of the input port designated in the operand are
+	read and loaded into the accumulator.</long>
+</instruction>
+
+<instruction>
+  <opcode>add</opcode>
+  <operand>R/M</operand>
+  <short>Add register or memory to accumulator</short>
+  <long>The contents of the operand (register or memory) are added to the contents of the accumulator and the result is stored in the accumulator. If the operand is a memorylocation, its location is specified by the contents of the HL registers. All flags are modified to reflect the result of the addition. </long>
+</instruction>
+
+<instruction>
+  <opcode>adc</opcode>
+  <operand>R/M</operand>
+  <short>Add register to accumulator with carry</short>
+  <long>The contents of the operand (register or memory) and the Carry flag are added to the contents of the accumulator and the result is stored in the accumulator. If the operand is a memory location, its location is specified by the contents of the HL registers. All flags are modified to reflect the result of the addition.</long>
+</instruction>
+
+<instruction>
+  <opcode>adi</opcode>
+  <operand>8-bit data</operand>
+  <short>Add immediate to accumulator</short>
+  <long>The 8-bit data (operand) is added to the contents of the accumulator and the result is stored in the accumulator. All flags are modified to reflect the result of the addition.</long>
+</instruction>
+
+<instruction>
+  <opcode>aci</opcode>
+  <operand>8-bit data</operand>
+  <short>Add immediate to accumulator with carry</short>
+  <long>The 8-bit data (operand) and the Carry flag are added to the contents of the accumulator and the result is stored in the accumulator. All flags are modified to reflect the result of the addition.</long>
+</instruction>
+
+<instruction>
+  <opcode>dad</opcode>
+  <operand>Reg. pair</operand>
+  <short>Add register pair to H and L registers</short>
+  <long>The 16-bit contents of the specified register pair are added to the contents of the HL register and the sum is stored in the HL register. The contents of the source register pair are not altered. If the result is larger than 16 bits, the CY flag is set.No other flags are affected.</long>
+</instruction>
+
+<instruction>
+  <opcode>sub</opcode>
+  <operand>R/M</operand>
+  <short>Subtract register or memory from accumulator</short>
+  <long>The contents of the operand (register or memory ) are subtracted from the contents of the accumulator, and the result is stored in the accumulator. If the operand is a memory location, its location is specified by the contents of the HL registers. All flags are modified to reflect the result of the subtraction.</long>
+</instruction>
+
+<instruction>
+  <opcode>sbb</opcode>
+  <operand>R/M</operand>
+  <short>Subtract source and borrow from accumulator</short>
+  <long>The contents of the operand (register or memory ) and the Borrow flag are subtracted from the contents of the accumulator and the result is placed in the accumulator. If the operand is a memory location, its location is specified by the contents of the HL registers. All flags are modified to reflect the result of the subtraction.</long>
+</instruction>
+
+<instruction>
+  <opcode>sui</opcode>
+  <operand>8-bit data</operand>
+  <short>Subtract immediate from accumulator</short>
+  <long>The 8-bit data (operand) is subtracted from the contents of the accumulator and the result is stored in the accumulator. All flags are modified to reflect the result of the subtraction.</long>
+</instruction>
+
+<instruction>
+  <opcode>sbi</opcode>
+  <operand>8-bit data</operand>
+  <short>Subtract immediate from accumulator with borrow</short>
+  <long>The 8-bit data (operand) and the Borrow flag are subtracted from the contents of the accumulator and the result is stored in the accumulator. All flags are modified to reflect the result of the subtracion.</long>
+</instruction>
+
+<instruction>
+  <opcode>inr</opcode>
+  <operand>R/M</operand>
+  <short>Increment register or memory by 1</short>
+  <long>The contents of the designated register or memory) are incremented by 1 and the result is stored in the same place. If the operand is a memory location, its location is specified by the contents of the HL registers.</long>
+</instruction>
+
+<instruction>
+  <opcode>inx</opcode>
+  <operand>R</operand>
+  <short>Increment register pair by 1</short>
+  <long>The contents of the designated register pair are incremented by 1 and the result is stored in the same place.</long>
+</instruction>
+
+<instruction>
+  <opcode>dcr</opcode>
+  <operand>R/M</operand>
+  <short>Decrement register or memory by 1</short>
+  <long>The contents of the designated register or memory are decremented by 1 and the result is stored in the same place. If the operand is a memory location, its location is specified by the contents of the HL registers.</long>
+</instruction>
+
+<instruction>
+  <opcode>dcx</opcode>
+  <operand>R</operand>
+  <short>Decrement register pair by 1</short>
+  <long>The contents of the designated register pair are decremented by 1 and the result is stored in the same place.</long>
+</instruction>
+
+<instruction>
+  <opcode>daa</opcode>
+  <operand>none</operand>
+  <short>Decimal adjust accumulator</short>
+  <long>The contents of the accumulator are changed from a binary value to two 4-bit binary coded decimal (BCD) digits. This is the only instruction that uses the auxiliary flag to perform the binary to BCD conversion, and the conversion procedure is described below. S, Z, AC, P, CY flags are altered to reflect the results of the operation.If the value of the low-order 4-bits in the accumulator is greater than 9 or if AC flag is set, the instruction adds 6 to thelow-order four bits.If the value of the high-order 4-bits in the accumulator is greater than 9 or if the Carry flag is set, the instruction adds 6 to the high-order four bits.</long>
+</instruction>
+
+<instruction>
+  <opcode>jmp</opcode>
+  <operand>16-bit address</operand>
+  <short>Jump unconditionally</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand.</long>
+</instruction>
+
+<instruction>
+  <opcode>jc</opcode>
+  <operand>16-bit address</operand>
+  <short>Jump conditionally,Jump on carry,CY = 1</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below.</long>
+</instruction>
+
+<instruction>
+  <opcode>jnc</opcode>
+  <operand>16-bit address</operand>
+  <short>Jump conditionally,Jump on no Carry,CY = 0</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below.</long>
+</instruction>
+
+<instruction>
+  <opcode>jp</opcode>
+  <operand>16-bit address</operand>
+  <short>Jump conditionally,Jump on positive,S = 0</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below.</long>
+</instruction>
+
+<instruction>
+  <opcode>jm</opcode>
+  <operand>16-bit address</operand>
+  <short>Jump conditionally,Jump on minus,S = 1</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below.</long>
+</instruction>
+
+<instruction>
+  <opcode>jz</opcode>
+  <operand>16-bit address</operand>
+  <short>Jump conditionally,Jump on zero,Z = 1</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below.</long>
+</instruction>
+
+<instruction>
+  <opcode>jnz</opcode>
+  <operand>16-bit address</operand>
+  <short>Jump conditionally,Jump on no zero,Z = 0</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below.</long>
+</instruction>
+
+<instruction>
+  <opcode>jpe</opcode>
+  <operand>16-bit address</operand>
+  <short>Jump conditionally,Jump on parity even,P = 1</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below.</long>
+</instruction>
+
+<instruction>
+  <opcode>jpo</opcode>
+  <operand>16-bit address</operand>
+  <short>Jump conditionally,Jump on parity odd,P = 0</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below.</long>
+</instruction>
+
+<instruction>
+  <opcode>call</opcode>
+  <operand>16-bit address</operand>
+  <short>Call unconditionally</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand. Before the transfer, the address of the next instruction after CALL (the contents of the program counter) is pushed onto the stack.</long>
+</instruction>
+
+<instruction>
+  <opcode>cc</opcode>
+  <operand>16-bit address</operand>
+  <short>Call conditionally,Call on carry,CY = 1</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below. Before the transfer, the address of the next instruction after the call (the contents of the program counter) is pushed onto the stack.</long>
+</instruction>
+
+<instruction>
+  <opcode>cnc</opcode>
+  <operand>16-bit address</operand>
+  <short>Call conditionally,Call on no Carry,CY = 0</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below. Before the transfer, the address of the next instruction after the call (the contents of the program counter) is pushed onto the stack.</long>
+</instruction>
+
+<instruction>
+  <opcode>cp</opcode>
+  <operand>16-bit address</operand>
+  <short>Call conditionally,Call on positive,S = 0</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below. Before the transfer, the address of the next instruction after the call (the contents of the program counter) is pushed onto the stack.</long>
+</instruction>
+
+<instruction>
+  <opcode>cm</opcode>
+  <operand>16-bit address</operand>
+  <short>Call conditionally,Call on minus,S = 1</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below. Before the transfer, the address of the next instruction after the call (the contents of the program counter) is pushed onto the stack.</long>
+</instruction>
+
+<instruction>
+  <opcode>cz</opcode>
+  <operand>16-bit address</operand>
+  <short>Call conditionally,Call on zero,Z = 1</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below. Before the transfer, the address of the next instruction after the call (the contents of the program counter) is pushed onto the stack.</long>
+</instruction>
+
+<instruction>
+  <opcode>cnz</opcode>
+  <operand>16-bit address</operand>
+  <short>Call conditionally,Call on no zero,Z = 0</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below. Before the transfer, the address of the next instruction after the call (the contents of the program counter) is pushed onto the stack.</long>
+</instruction>
+
+<instruction>
+  <opcode>cpe</opcode>
+  <operand>16-bit address</operand>
+  <short>Call conditionally,Call on parity even,P = 1</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below. Before the transfer, the address of the next instruction after the call (the contents of the program counter) is pushed onto the stack.</long>
+</instruction>
+
+<instruction>
+  <opcode>cpo</opcode>
+  <operand>16-bit address</operand>
+  <short>Call conditionally,Call on parity odd,P = 0</short>
+  <long>The program sequence is transferred to the memory location specified by the 16-bit address given in the operand based on the specified flag of the PSW as described below. Before the transfer, the address of the next instruction after the call (the contents of the program counter) is pushed onto the stack.</long>
+</instruction>
+
+<instruction>
+  <opcode>ret</opcode>
+  <operand>none</operand>
+  <short>Return from subroutine unconditionally</short>
+  <long>The program sequence is transferred from the subroutine to the calling program. The two bytes from the top of the stack are copied into the program counter, and program execution begins at the new address.</long>
+</instruction>
+
+<instruction>
+  <opcode>rc</opcode>
+  <operand>none</operand>
+  <short>Return from subroutine conditionally,CY = 1</short>
+  <long>The program sequence is transferred from the subroutine to the calling program based on the specified flag of the PSW as described below. The two bytes from the top of the stack are copied into the program counter, and program execution begins at the new address.</long>
+</instruction>
+
+<instruction>
+  <opcode>rnc</opcode>
+  <operand>none</operand>
+  <short>Return from subroutine conditionally,CY = 0</short>
+  <long>The program sequence is transferred from the subroutine to the calling program based on the specified flag of the PSW as described below. The two bytes from the top of the stack are copied into the program counter, and program execution begins at the new address.</long>
+</instruction>
+
+<instruction>
+  <opcode>rp</opcode>
+  <operand>none</operand>
+  <short>Return from subroutine conditionally,S = 0</short>
+  <long>The program sequence is transferred from the subroutine to the calling program based on the specified flag of the PSW as described below. The two bytes from the top of the stack are copied into the program counter, and program execution begins at the new address.</long>
+</instruction>
+
+<instruction>
+  <opcode>rm</opcode>
+  <operand>none</operand>
+  <short>Return from subroutine conditionally,S = 1</short>
+  <long>The program sequence is transferred from the subroutine to the calling program based on the specified flag of the PSW as described below. The two bytes from the top of the stack are copied into the program counter, and program execution begins at the new address.</long>
+</instruction>
+
+<instruction>
+  <opcode>rz</opcode>
+  <operand>none</operand>
+  <short>Return from subroutine conditionally,Z = 1</short>
+  <long>The program sequence is transferred from the subroutine to the calling program based on the specified flag of the PSW as described below. The two bytes from the top of the stack are copied into the program counter, and program execution begins at the new address.</long>
+</instruction>
+
+<instruction>
+  <opcode>rnz</opcode>
+  <operand>none</operand>
+  <short>Return from subroutine conditionally,Z = 0</short>
+  <long>The program sequence is transferred from the subroutine to the calling program based on the specified flag of the PSW as described below. The two bytes from the top of the stack are copied into the program counter, and program execution begins at the new address.</long>
+</instruction>
+
+<instruction>
+  <opcode>rpe</opcode>
+  <operand>none</operand>
+  <short>Return from subroutine conditionally,P = 1</short>
+  <long>The program sequence is transferred from the subroutine to the calling program based on the specified flag of the PSW as described below. The two bytes from the top of the stack are copied into the program counter, and program execution begins at the new address.</long>
+</instruction>
+
+<instruction>
+  <opcode>rpo</opcode>
+  <operand>none</operand>
+  <short>Return from subroutine conditionally,P = 0</short>
+  <long>The program sequence is transferred from the subroutine to the calling program based on the specified flag of the PSW as described below. The two bytes from the top of the stack are copied into the program counter, and program execution begins at the new address.</long>
+</instruction>
+
+<instruction>
+  <opcode>pchl</opcode>
+  <operand>none</operand>
+  <short>Load program counter with HL contents</short>
+  <long>The contents of registers H and L are copied into the program counter. The contents of H are placed as the high-order byte and the contents of L as the low-order byte.</long>
+</instruction>
+
+<instruction>
+  <opcode>rst</opcode>
+  <operand>0-7</operand>
+  <short>Restart</short>
+  <long>The RST instruction is equivalent to a 1-byte call instruction to one of eight memory locations depending upon the number. The instructions are generally used in conjunction with interrupts and inserted using external hardware.</long>
+</instruction>
+
+<instruction>
+  <opcode>rst</opcode>
+  <operand>0-7</operand>
+  <short>Restart</short>
+  <long>The RST instruction is equivalent to a 1-byte call instruction to one of eight memory locations depending upon the number. The instructions are generally used in conjunction with interrupts and inserted using external hardware.</long>
+</instruction>
+
+<instruction>
+  <opcode>cmp</opcode>
+  <operand>R/M</operand>
+  <short>Compare register or memory with accumulator</short>
+  <long>The contents of the operand (register or memory) are compared with the contents of the accumulator. Both contents are preserved . The result of the comparison is shown by setting the flags of the PSW </long>
+</instruction>
+
+<instruction>
+  <opcode>cpi</opcode>
+  <operand>8-bit data</operand>
+  <short>Compare immediate with accumulator</short>
+  <long>The second byte (8-bit data) is compared with the contents of the accumulator. The values being compared remain unchanged. The result of the comparison is shown by setting the flags of the PSW as </long>
+</instruction>
+
+<instruction>
+  <opcode>ana</opcode>
+  <operand>R/M</operand>
+  <short>Logical AND register or memory with accumulator</short>
+  <long>The contents of the accumulator are logically ANDed with the contents of the operand (register or memory), and the result is placed in the accumulator. If the operand is a memory location, its address is specified by the contents of HL registers. S, Z, P are modified to reflect the result of the operation. CY is reset. AC is set.</long>
+</instruction>
+
+<instruction>
+  <opcode>ani</opcode>
+  <operand>8-bit data</operand>
+  <short>Logical AND immediate with accumulator</short>
+  <long>The contents of the accumulator are logically ANDed with the 8-bit data (operand) and the result is placed in the accumulator. S, Z, P are modified to reflect the result of the operation. CY is reset. AC is set.</long>
+</instruction>
+
+<instruction>
+  <opcode>xra</opcode>
+  <operand>8-bit data</operand>
+  <short>Exclusive OR immediate with accumulator</short>
+  <long>The contents of the accumulator are Exclusive ORed with the 8-bit data (operand) and the result is placed in the accumulator. S, Z, P are modified to reflect the result of the operation. CY and AC are reset.</long>
+</instruction>
+
+<instruction>
+  <opcode>ora</opcode>
+  <operand>R/M</operand>
+  <short>Logical OR register or memory with accumulaotr</short>
+  <long>The contents of the accumulator are logically ORed with the contents of the operand (register or memory), and the result is placed in the accumulator. If the operand is a memory location, its address is specified by the contents of HL registers. S, Z, P are modified to reflect the result of the operation. CY and AC are reset.</long>
+</instruction>
+
+<instruction>
+  <opcode>ori</opcode>
+  <operand>8-bit data</operand>
+  <short>Logical OR immediate with accumulator</short>
+  <long>The contents of the accumulator are logically ORed with the 8-bit data (operand) and the result is placed in the accumulator. S, Z, P are modified to reflect the result of the operation. CY and AC are reset.</long>
+</instruction>
+
+<instruction>
+  <opcode>rlc</opcode>
+  <operand>none</operand>
+  <short>Rotate accumulator left</short>
+  <long>Each binary bit of the accumulator is rotated left by one position. Bit D7 is placed in the position of D0 as well as in the Carry flag. CY is modified according to bit D7. S, Z, P, AC are not affected.</long>
+</instruction>
+
+<instruction>
+  <opcode>rrc</opcode>
+  <operand>none</operand>
+  <short>Rotate accumulator right</short>
+  <long>Each binary bit of the accumulator is rotated right by one position. Bit D0 is placed in the position of D7 as well as in the Carry flag. CY is modified according to bit D0. S, Z, P, AC are not affected.</long>
+</instruction>
+
+<instruction>
+  <opcode>ral</opcode>
+  <operand>none</operand>
+  <short>Rotate accumulator left through carry</short>
+  <long>Each binary bit of the accumulator is rotated left by one position through the Carry flag. Bit D7 is placed in the Carry flag, and the Carry flag is placed in the least significant position D0. CY is modified according to bit D7. S, Z, P, AC are not affected.</long>
+</instruction>
+
+<instruction>
+  <opcode>rar</opcode>
+  <operand>none</operand>
+  <short>Rotate accumulator right through carry</short>
+  <long>Each binary bit of the accumulator is rotated right by one position through the Carry flag. Bit D0 is placed in the Carry flag, and the Carry flag is placed in the most significant position D7. CY is modified according to bit D0. S, Z, P, AC are not affected.</long>
+</instruction>
+
+<instruction>
+  <opcode>cma</opcode>
+  <operand>none</operand>
+  <short>Complement accumulator</short>
+  <long>The contents of the accumulator are complemented. No flags are affected.</long>
+</instruction>
+
+<instruction>
+  <opcode>cmc</opcode>
+  <operand>none</operand>
+  <short>Complement carry</short>
+  <long></long>
+</instruction>
+
+<instruction>
+  <opcode>stc</opcode>
+  <operand>none</operand>
+  <short>Set Carry</short>
+  <long>The Carry flag is set to 1. No other flags are affected.</long>
+</instruction>
+
+<instruction>
+  <opcode>nop</opcode>
+  <operand>none</operand>
+  <short>No operation</short>
+  <long>No operation is performed. The instruction is fetched and decoded. However no operation is executed.</long>
+</instruction>
+
+<instruction>
+  <opcode>hlt</opcode>
+  <operand>none</operand>
+  <short>Halt and enter wait state</short>
+  <long>The CPU finishes executing the current instruction and halts any further execution. An interrupt or reset is necessary to exit from the halt state.</long>
+</instruction>
+
+<instruction>
+  <opcode>di</opcode>
+  <operand>none</operand>
+  <short>Disable interrupts</short>
+  <long>The interrupt enable flip-flop is reset and all the interrupts except the TRAP are disabled. No flags are affected.</long>
+</instruction>
+
+<instruction>
+  <opcode>ei</opcode>
+  <operand>none</operand>
+  <short>Enable interrupts</short>
+  <long>The interrupt enable flip-flop is set and all interrupts are enabled. No flags are affected. After a system reset or the acknowledgement of an interrupt, the interrupt enable flipflop is reset, thus disabling the interrupts. This instruction is necessary to reenable the interrupts (except TRAP).</long>
+</instruction>
+
+<instruction>
+  <opcode>rim</opcode>
+  <operand>none</operand>
+  <short>Read interrupt mask</short>
+  <long>This is a multipurpose instruction used to read the status of interrupts 7.5, 6.5, 5.5 and read serial data input bit. The instruction loads eight bits in the accumulator with the following interpretations.</long>
+</instruction>
+
+<instruction>
+  <opcode>sim</opcode>
+  <operand>none</operand>
+  <short>Set interrupt mask</short>
+  <long>This is a multipurpose instruction and used to implement the 8085 interrupts 7.5, 6.5, 5.5, and serial data output. The instruction interprets the accumulator contents as follows.</long>
+</instruction>
+</help>

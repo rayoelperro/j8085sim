@@ -1,0 +1,29 @@
+<html>
+<body>
+<p><b>Program 1</b>
+<br>@NEXT 0005
+<br>IN 01
+<br>MOV B,A
+<br>IN 02
+<br>ADD B
+<br>OUT 03
+<br>HLT
+
+<p><b>Program 2 - Software Interrupts</b>
+<br>@NEXT 0000
+<br>JMP 0020
+<br>
+<br>@NEXT 0020
+<br>MVI A,FF
+<br>RET
+<br>
+<br>@BEGIN 4000
+<br>@NEXT 4000
+<br>MVI B,01
+<br>RST 0
+<br>MOV C,B
+<br>HLT
+
+
+</body>
+</html>

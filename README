@@ -1,0 +1,23 @@
+j8085sim
+Version 1.03
+www.sinujohn.wordpress.com
+------------------------------------------------------
+This software is also referenced as 8085sim. 
+
+Update:August 2019:
+The source code was initially uploaded in 2010 at https://sourceforge.net/projects/j8085sim/
+I would have liked this to be a project which uses Maven/Gradle. But unfortunately I didn't knew about them when I created this project initially - this is a NetBeans project. Currently I do not have time to add this. If anyone is willing to add Maven, please create a pull request. Thanks!
+
+-------------------
+
+FEATURES:
+Supports all 8085 instructions and all interrupts.
+
+Read the manual.pdf file for detailed instructions
+
+What's missing? - This program donot support serial in/out feature. It was something which could be included easily. But I was sort of lazy :)
+But its something which students dont use much - I haven't anyway!. So I suppose this would be okay. But if some one really need it, please try 
+to contribute it. 
+
+If you find any instruction not working as it is supposed to do, please contact me. 
+

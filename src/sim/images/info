@@ -1,0 +1,5 @@
+compile:	run-build
+execute:	arrow-right
+debug:		go-next-context
+stop:		process-stop
+
