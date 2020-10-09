@@ -101,6 +101,7 @@ public class RegFrame extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registers");
@@ -258,6 +259,13 @@ public class RegFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("CLEAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -289,7 +297,7 @@ public class RegFrame extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1))
+                                        .addComponent(jButton1).addComponent(jButton2))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
@@ -384,7 +392,8 @@ public class RegFrame extends javax.swing.JFrame {
                     .addComponent(cy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
                 .addGap(21, 21, 21))
         );
 
@@ -449,19 +458,37 @@ public class RegFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(aAction()&&bAction()&&cAction()&&dAction()&&
-        eAction()&& hAction()&& lAction()&& spAction()&& pcAction()&&
-        sAction()&& zAction()&& acAction()&& pAction()&& cyAction())
+                eAction()&& hAction()&& lAction()&& spAction()&& pcAction()&&
+                sAction()&& zAction()&& acAction()&& pAction()&& cyAction())
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        resetReg();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         mframe.updateRegViewer();
         mframe.setEnabled(true);
     }//GEN-LAST:event_formWindowClosed
 
-    /**
-    * @param args the command line arguments
-    */
+void resetReg() {
+    a.setText("00");
+    b.setText("00");
+    c.setText("00");
+    d.setText("00");
+    e.setText("00");
+    h.setText("00");
+    l.setText("00");
+    sp.setText("FFFF");
+    pc.setText("0000");
+    s.setText("0");
+    z.setText("0");
+    ac.setText("0");
+    p.setText("0");
+    cy.setText("0");
+}
+
 
 boolean aAction()
 {
@@ -746,6 +773,7 @@ void errorInvalidBinary()
     private javax.swing.JTextField e;
     private javax.swing.JTextField h;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

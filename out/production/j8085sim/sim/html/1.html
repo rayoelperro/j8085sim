@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.1  (Linux)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20100415;22244000">
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<H1 ALIGN=LEFT>Getting Started</H1>
+<P ALIGN=LEFT>MEMORY AREA: 0000 - FFFF
+<br>
+	Please keep these points in mind while entering the instruction code:<br>
+
+<p>1.The Opcode, Operand-1 and Operand-2 must be separated from each other using space or comma. 
+<p>2.A line should contain only a single instruction.
+<p>3.Redundant spaces and commas in instructions are neglected. 
+<p>4.Instructions are not case sensitive.
+<p>5.If not specified, the instructions are loaded at location 0000.
+<p>6.If not specified, execution starts from location 0000.
+<p>7.By default, Stack Pointer is FFFF.
+<p>8.Labels: Label names should end with a colon. There should NOT be a space between label name and colon. 
+<br>Eg: <br>
+LABEL1: MOV A,B
+<p>9.Comments: Comments should be preceded by a semicolon. Everything that comes after a semicolon till the end of the line is regarded as a comment. 
+In cases where an instruction has two operands, everything that comes after the second operand is regarded as a comment. But still it is a good practice to use semicolon to start a comment.
+<br>Eg:
+<br>ADD C ;This is a comment
+<p>10.Some Assembler Directives can be used in this software. These directives MUST begin with a '@' symbol. The Assembler Directives supported are - @NEXT, @BEGIN and @EQU.</P>
+</BODY>
+</HTML>
