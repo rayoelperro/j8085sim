@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="j8085sim">
-    <output-path>$PROJECT_DIR$/out/artifacts/j8085sim</output-path>
-    <root id="archive" name="j8085sim.jar">
+  <artifact type="jar" build-on-make="true" name="j8085sim_modded">
+    <output-path>$PROJECT_DIR$/out/artifacts/j8085sim_modded</output-path>
+    <root id="archive" name="j8085sim_modded.jar">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/manifest.mf" output-file-name="MANIFEST.MF" />
       </element>
