@@ -30,7 +30,7 @@
 
 package sim;
 
-import java.awt.Font;
+import java.awt.*;
 import javax.swing.table.*;
 import javax.swing.event.*;
 import java.io.*;
@@ -43,10 +43,6 @@ import javax.swing.text.*;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Map;
-import java.awt.Color;
-
-import java.awt.SplashScreen;
-import java.awt.Graphics2D;
 
 import javax.swing.undo.*;
 
@@ -116,7 +112,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
         r=new Register();
         m=new Memory();
         ports=new Ports();
-        
+
         debugMode=false;
         compiled=false;
         suspended=false;
@@ -142,7 +138,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
             int tmp=2-temp.length();
             String dup="";
             for(int j=0;j<tmp;j++) dup=dup+"0";
-                    temp=dup+temp;
+            temp=dup+temp;
             temp=temp.toUpperCase();
             portList[i]=temp;
         }
@@ -151,7 +147,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
 
         StyleConstants.setBackground(highlightattr, Color.YELLOW);
         StyleConstants.setBackground(unhighlightattr, Color.WHITE);
-        
+
         actions=createActionTable(pgmEditor); //for cut copy
         cutMenu=editMenu.add(getActionByName(DefaultEditorKit.cutAction));
         cutMenu.setText("Cut");
@@ -187,6 +183,8 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
         updateMemoryViewer();
         updatePortViewer();
         updateRegViewer();
+
+        setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
     }
 
     //The following two methods allow us to find an
@@ -1079,8 +1077,11 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jPanel3Clone = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane2Clone = new javax.swing.JScrollPane();
         outputArea = new javax.swing.JTextPane();
+        outputAreaClone = new javax.swing.JTextPane();
         jSplitPane2 = new javax.swing.JSplitPane();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -1258,6 +1259,9 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
         registerMenu = new javax.swing.JMenuItem();
         memoryMenu = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        cleanMenu = new javax.swing.JMenu();
+        cleanReg = new javax.swing.JMenuItem();
+        cleanPorts = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         compileMenu = new javax.swing.JMenuItem();
         executeMenu = new javax.swing.JMenuItem();
@@ -1279,20 +1283,53 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
         });
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Messages"));
+        jPanel3Clone.setBorder(javax.swing.BorderFactory.createTitledBorder("Messages"));
 
+        outputArea.setEditable(false);
+        outputArea.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                outputAreaClone.setText(outputArea.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                outputAreaClone.setText(outputArea.getText());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                outputAreaClone.setText(outputArea.getText());
+            }
+        });
+        outputAreaClone.setEditable(false);
         jScrollPane2.setViewportView(outputArea);
+        jScrollPane2Clone.setViewportView(outputAreaClone);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel3LayoutClone = new javax.swing.GroupLayout(jPanel3Clone);
+        jPanel3Clone.setLayout(jPanel3LayoutClone);
+        jPanel3LayoutClone.setHorizontalGroup(
+                jPanel3LayoutClone.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2Clone, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
+        );
+        jPanel3LayoutClone.setVerticalGroup(
+                jPanel3LayoutClone.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3LayoutClone.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane2Clone, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
         );
 
         jSplitPane2.setResizeWeight(1.0);
@@ -1316,6 +1353,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
+
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
@@ -1805,6 +1843,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
         );
 
         jTabbedPane1.addTab("Symbols", jPanel19);
+        jTabbedPane1.addTab("Output", jPanel3Clone);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Interrupts"));
 
@@ -1914,9 +1953,9 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6))
         );
 
@@ -1926,7 +1965,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
         lineNoLabel.setText(":");
 
         shortHelpLabel.setFont(new java.awt.Font("Dialog", 0, 12));
-        shortHelpLabel.setText(".");
+        //shortHelpLabel.setText(".");
 
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 12));
         jLabel8.setText("Line: ");
@@ -1959,16 +1998,18 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap()
+            )
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jSplitPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSplitPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                )
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Registers"));
@@ -2726,6 +2767,50 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
 
         jMenuBar1.add(jMenu3);
 
+        cleanMenu.setMnemonic('C');
+        cleanMenu.setText("Clean");
+
+        cleanReg.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        cleanReg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sim/images/small/code-block.png"))); // NOI18N
+        cleanReg.setMnemonic('R');
+        cleanReg.setText("Registers");
+        cleanReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                r.setA("00");
+                r.setB("00");
+                r.setC("00");
+                r.setD("00");
+                r.setE("00");
+                r.setH("00");
+                r.setL("00");
+                r.setCarry(0);
+                r.setSign(0);
+                r.setZero(0);
+                r.setAuxCarry(0);
+                r.setParity(0);
+                r.setPC("0000");
+                r.setSP("FFFF");
+                updateRegViewer();
+            }
+        });
+        cleanMenu.add(cleanReg);
+
+        cleanPorts.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        cleanPorts.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sim/images/small/memory.png"))); // NOI18N
+        cleanPorts.setMnemonic('P');
+        cleanPorts.setText("Ports");
+        cleanPorts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                for (int x = 0; x < 6; x++) {
+                    ports.setPort("00", "0" + String.valueOf(x));
+                    updatePortViewer();
+                }
+            }
+        });
+        cleanMenu.add(cleanPorts);
+
+        jMenuBar1.add(cleanMenu);
+
         jMenu4.setText("Help");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
@@ -3101,7 +3186,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
         RegFrame rframe=new RegFrame(r,this);
         rframe.setLocation((int)(this.getWidth()-rframe.getWidth())/2, (int)(this.getHeight()-rframe.getHeight())/2);
         setEnabled(false);
-}//GEN-LAST:event_registerMenuActionPerformed
+    }//GEN-LAST:event_registerMenuActionPerformed
 
     private void memoryMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memoryMenuActionPerformed
         MemFrame mframe=new MemFrame(m,this);
@@ -3222,7 +3307,6 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
     }
 
     void showSplash(int delay) {
-
         final SplashScreen splash = SplashScreen.getSplashScreen();
         if (splash == null) {
             System.out.println("SplashScreen.getSplashScreen() returned null");
@@ -3336,6 +3420,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel3Clone;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -3344,6 +3429,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane2Clone;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -3370,6 +3456,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
     private javax.swing.JButton openButton;
     private javax.swing.JMenuItem openMenu;
     private javax.swing.JTextPane outputArea;
+    private javax.swing.JTextPane outputAreaClone;
     private javax.swing.JLabel pFlag;
     private javax.swing.JButton pasteButton;
     private javax.swing.JLabel pcReg;
@@ -3455,6 +3542,9 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
     private javax.swing.JButton undoButton;
     private javax.swing.JMenuItem undoMenu;
     private javax.swing.JLabel zFlag;
+    private javax.swing.JMenu cleanMenu;
+    private javax.swing.JMenuItem cleanReg;
+    private javax.swing.JMenuItem cleanPorts;
     // End of variables declaration//GEN-END:variables
 
 }
