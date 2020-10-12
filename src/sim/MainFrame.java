@@ -221,6 +221,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
                 LINELIMITS=new int[]{0,0};
             }
             doc.setCharacterAttributes(LINELIMITS[0], LINELIMITS[1], highlightattr, false);
+            pgmEditor.setCaretPosition(LINELIMITS[0]); //Move with code, improve runtime bug finding
             ///////////////////////////////////////////////////////////////////////////////////
             String tempAddr=memAddress;
             memAddress=exec.execute(memAddress);
