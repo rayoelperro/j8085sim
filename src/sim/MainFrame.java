@@ -36,13 +36,10 @@ import javax.swing.event.*;
 import java.io.*;
 
 //for cut copy actions
-import java.util.HashMap;
+import java.util.*;
 import javax.swing.*;
 import javax.swing.text.*;
 /////////////////////////
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Map;
 
 import javax.swing.undo.*;
 
@@ -53,6 +50,8 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
  * @author sinu
  */
 public class MainFrame extends javax.swing.JFrame implements TableModelListener,Runnable{
+
+    int modded_version[];
 
     Register r;
     Memory m;
@@ -106,6 +105,8 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
 
     /** Creates new form MainFrame */
     public MainFrame() {
+        modded_version = new int[]{0, 1, 0, 1};
+
         showSplash(2000);
 
         initComponents();
@@ -939,7 +940,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
         String title="";
         if(currentFile==null) title="Default";
         else title=currentFile.getName();
-        title=title+" - j8085sim";
+        title=title+" - j8085sim modded: " + String.join(".", Arrays.stream(modded_version).mapToObj(String::valueOf).toArray(String[]::new));
         setTitle(title);
     }
 
