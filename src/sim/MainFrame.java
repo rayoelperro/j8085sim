@@ -215,7 +215,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
         while(memAddress!=null)
         {
             //for highlighting while executing
-            doc.setCharacterAttributes(LINELIMITS[0], LINELIMITS[1], unhighlightattr, false);
+            doc.setCharacterAttributes(0, doc.getLength(), unhighlightattr, false); //Avoid wrong highlight
             LINELIMITS=(int[])lineDetail.get(memAddress);
             if(LINELIMITS==null)
             {
@@ -257,9 +257,9 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
             try
             {
                 if(!suspended){
-                float d=(tstate*1000)/frequency;
-                int delay=(int)d; System.out.print("tstate: "+tstate+" delay: "+d);
-                Thread.sleep(delay);
+                    float d=(tstate*1000)/frequency;
+                    int delay=(int)d; System.out.print("tstate: "+tstate+" delay: "+d);
+                    Thread.sleep(delay);
                 }
                 synchronized(this)
                 {
@@ -980,7 +980,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
 
     public void executeProgramAction()
     {
-                execThread=new Thread(this,"execution thread");
+        execThread=new Thread(this,"execution thread");
         sa=new SynAnalyser(m); sa.setTextpane(pgmEditor);
         sa.input(pgmEditor.getText());
         sa.analyser();
@@ -1020,7 +1020,7 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
 
     public void debugProgramAction()
     {
-                debugMode=true;
+        debugMode=true;
         if(!compiled)
         {
             sa=new SynAnalyser(m);
@@ -1058,14 +1058,13 @@ public class MainFrame extends javax.swing.JFrame implements TableModelListener,
 
     public void stopExecutionAction()
     {
-                memAddress=null;
+        memAddress=null;
         debugMode=false;
         compiled=false;
         suspended=false;
         stopButton.setEnabled(false);
         stopMenu.setEnabled(false);
         executeButton.setEnabled(true);
-
     }
 
     /** This method is called from within the constructor to
